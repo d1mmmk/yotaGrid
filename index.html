@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>yota jquery grid</title>
+        <!-- <link href="/css/style.css" rel="stylesheet" type="text/css" /> -->
+    </head>
+    <body>
+		<div id="jGrid"></div>
+        <script charset="utf-8" src="jquery-1.11.0.min.js"></script>
+        <script charset="utf-8" src="build/jquery.grid.min.js"></script>
+        <script>
+		    var myBigSourceArray = []; //предположим изначально 1000 записей 
+		    for ( var i = 0 ; i < 1000 ; i++) {
+	            myBigSourceArray.push({
+	                title: 'title ' + i,
+	                data: 'bla-bla-bla data in row ' + i
+	            });
+	        }
+	        var myModel = new Model(myBigSourceArray),
+	            myView  = new View(myModel);
+
+		    $( document ).ready(function(){
+		        $( '#jGrid' ).jGrid({
+		            view : myView
+		        });
+		        for ( var i = 0 ; i < 10000 ; i++) {
+		            myModel.add({
+		                title: 'title ' + (1000+i),
+		                data: 'bla-bla-bla data in row' + (1000+i)
+		            });
+		        }
+		    });
+	    </script>
+    </body>
+</html>
